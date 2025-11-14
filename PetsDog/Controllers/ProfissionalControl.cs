@@ -4,27 +4,27 @@ using PetsDog.Models;
 
 namespace PetsDog.Controllers
 {
-    public class AnimalController : Controller
+    public class ProfissionalControl : Controller
     {
         private readonly AppDbContext _context;
-        public AnimalController(AppDbContext context)
+        public ProfissionalControl(AppDbContext context)
         {
             _context = context;
         }
         public IActionResult Index()
         {
-            return View(_context.Animals.ToList());
+            return View(_context.Profissionais.ToList());
         }
         [HttpPost]
-        public IActionResult Create(Animal animal)
+        public IActionResult Create(Profissional profissional)
         {
             if (ModelState.IsValid)
             {
-                _context.Animals.Add(animal);
+                _context.Profissionais.Add(profissional);
                 _context.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(animal);
+            return View(profissional);
         }
         [HttpGet]
         public IActionResult Create()
@@ -34,35 +34,35 @@ namespace PetsDog.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            var animal = _context.Animals.Find(id);
-            if (animal == null) return NotFound();
-            return View(animal);
+            var profissional = _context.Profissionais.Find(id);
+            if (profissional == null) return NotFound();
+            return View(profissional);
         }
         [HttpPost]
-        public IActionResult Edit(Animal animal)
+        public IActionResult Edit(Profissional profissional)
         {
             if (ModelState.IsValid)
             {
-                _context.Animals.Update(animal);
+                _context.Profissionais.Update(profissional);
                 _context.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(animal);
+            return View(profissional);
         }
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            var animal = _context.Animals.Find(id);
-            if (animal == null) return NotFound();
-            return View(animal);
+            var profissional = _context.Profissionais.Find(id);
+            if (profissional == null) return NotFound();
+            return View(profissional);
         }
         [HttpPost]
         public IActionResult DeleteConfirmed(int id)
         {
-            var animal = _context.Animals.Find(id);
-            if (animal != null)
+          var profissional = _context.Profissionais.Find(id);
+            if (profissional != null)
             {
-                _context.Animals.Remove(animal);
+                _context.Profissionais.Remove(profissional);
                 _context.SaveChanges();
             }
             return RedirectToAction("Index");
