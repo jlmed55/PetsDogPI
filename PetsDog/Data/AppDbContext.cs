@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using PetsDog.Data.Configuration;
 using PetsDog.Models;
 
 namespace PetsDog.Data
@@ -9,18 +10,18 @@ namespace PetsDog.Data
             base(options)
         { }
         public DbSet<Animal> Animals { get; set; }
-        public DbSet<Agendamento> Agendamentos { get; set; }
-        public DbSet<Servico> Servico { get; set; }
+        public DbSet<Agendamento> Agendamento { get; set; }
+        public DbSet<Servico> Servicos { get; set; }
         public DbSet<Cliente> Clientes { get; set; }
         public DbSet<Profissional> Profissionais { get; set; }
 
-        /*protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<>()
-                .HasOne(p => p.Fornecedor)
-                .WithMany(f => f.Produtos)
-                .HasForeignKey(p => p.Fornecedorid)
-                .OnDelete(DeleteBehavior.Restrict);
-        }*/
+            modelBuilder.ApplyConfiguration(new AnimalConfig());
+            modelBuilder.ApplyConfiguration(new AgendamentoConfig());
+            modelBuilder.ApplyConfiguration(new CLienteConfig());
+            modelBuilder.ApplyConfiguration(new ServicoConfig());
+            modelBuilder.ApplyConfiguration(new ProfissionalConfig());
+        }
     }
 }

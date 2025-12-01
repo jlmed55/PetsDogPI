@@ -1,7 +1,15 @@
+using Microsoft.EntityFrameworkCore;
+using PetsDog.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddSession();
+builder.Services.AddDbContext<AppDbContext>(options =>
+options.UseMySql(builder.Configuration.GetConnectionString(
+    "DefaultConnection"), new MySqlServerVersion(
+     new Version(8, 0, 33))));
 
 var app = builder.Build();
 
@@ -15,13 +23,13 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
+app.UseSession();
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Agendamento}/{action=Index}/{id?}");
 
 app.Run();

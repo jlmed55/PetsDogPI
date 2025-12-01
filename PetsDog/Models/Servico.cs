@@ -6,5 +6,6 @@
         public string? nome { get; set; }
         public int duracao_min {  get; set; }
         public decimal preco {  get; set; }
+        public ICollection<Agendamento>? Agendamentos { get; set; }
     }
 }

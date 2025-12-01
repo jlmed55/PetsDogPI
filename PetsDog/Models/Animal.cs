@@ -1,8 +1,10 @@
-﻿namespace PetsDog.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace PetsDog.Models
 {
     public class Animal
     {
-        public int IdAnimal { get; set; }
+        public int id_animal { get; set; }
 
         public string? Nome { get; set; }
 
@@ -12,6 +14,8 @@
 
         public int Idade { get; set; }
 
-        public  int Idcliente {  get; set; }
+        public  int Id_cliente {  get; set; }
+        public Cliente? Cliente { get; set; }
+        public ICollection<Agendamento>? Agendamentos { get; set; }
     }
 }

@@ -14,14 +14,14 @@ namespace PetsDog.Controllers
         }
         public IActionResult Index()
         {
-            return View(_context.Servico.ToList());
+            return View(_context.Servicos.ToList());
         }
         [HttpPost]
         public IActionResult Create(Servico servico)
         {
             if (ModelState.IsValid)
             {
-                _context.Servico.Add(servico);
+                _context.Servicos.Add(servico);
                 _context.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -35,7 +35,7 @@ namespace PetsDog.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            var servico = _context.Servico.Find(id);
+            var servico = _context.Servicos.Find(id);
             if (servico == null) return NotFound();
             return View(servico);
         }
@@ -44,7 +44,7 @@ namespace PetsDog.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Servico.Update(servico);
+                _context.Servicos.Update(servico);
                 _context.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -53,17 +53,17 @@ namespace PetsDog.Controllers
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            var servico = _context.Servico.Find(id);
+            var servico = _context.Servicos.Find(id);
             if (servico == null) return NotFound();
             return View(servico);
         }
         [HttpPost]
         public IActionResult DeleteConfirmed(int id)
         {
-            var servico = _context.Servico.Find(id);
+            var servico = _context.Servicos.Find(id);
             if (servico != null)
             {
-                _context.Servico.Remove(servico);
+                _context.Servicos.Remove(servico);
                 _context.SaveChanges();
             }
             return RedirectToAction("Index");

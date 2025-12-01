@@ -53,7 +53,7 @@ namespace PetsDog.Controllers
             [HttpGet]
             public IActionResult Delete(int id)
             {
-                var cliente = _context.Servico.Find(id);
+                var cliente = _context.Servicos.Find(id);
                 if (cliente == null) return NotFound();
                 return View(cliente);
             }

@@ -2,6 +2,7 @@
 {
     public class Cliente
     {
+
         public int Idcliente { get; set; }
 
         public string? Nome { get; set; }
@@ -13,5 +14,7 @@
         public string? Telefone { get; set; }
 
         public  DateTime Datacadastro {  get; set; }
+        public ICollection<Animal>? Animals { get; set; }
+        
     }
 }
