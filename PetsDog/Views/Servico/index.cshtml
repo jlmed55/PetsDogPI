@@ -1,0 +1,31 @@
+﻿@{
+	ViewData["Title"] = "Servico";
+}
+@model IEnumerable<PetsDog.Models.Servico>
+
+<div class="text-center">
+	<h1>CRUD DE FORNECEDORES</h1>
+	<a href="/Servico/Create">Cadastrar Serviço</a>
+	<table>
+		<tr>
+			<th>ID</th>
+			<th>NOME</th>
+			<th>DURAÇÃO EM MINUTOS</th>
+			<th>PREÇO</th>
+			<th>AÇÕES</th>
+		</tr>
+		@foreach (var Servico in Model)
+		{
+			<tr>
+				<td>@Servico. Idservico</td>
+				<td>@Servico.nome</td>
+				<td>@Servico.duracao_min</td>
+				<td>@Servico.preco</td>
+				<td>
+					<a href="/Servico/Edit/@Servico.Idservico">Editar</a>
+					<a href="/Servico/Delete/@Servico.Idservico">Excluir</a>
+				</td>
+			</tr>
+		}
+	</table>
+</div>

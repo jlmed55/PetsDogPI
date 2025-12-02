@@ -1,0 +1,19 @@
+﻿@{
+	ViewData["Title"] = "Fornecedores";
+}
+@model ProjetoMVC.Models.Fornecedor
+
+	<div class="text-center">
+		<h1>CRUD de Produtos</h1>
+		<form asp-action="Edit" method="post">
+			<label>ID</label>
+			<input asp-for="Id" />
+			<label>NOME</label>
+			<input asp-for="Nome" />
+			<label>CATEGORIA</label>
+			<input asp-for="Cnpj" />
+			<label>PREÇO</label>
+			<input asp-for="Telefone" />
+			<button type="submit">Salvar</button>
+		</form>
+	</div>

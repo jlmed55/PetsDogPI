@@ -9,7 +9,6 @@
   <ItemGroup>
     <Folder Include="Views\Animal\" />
     <Folder Include="Views\Cliente\" />
-    <Folder Include="Views\Servico\" />
     <Folder Include="Views\Profissional\" />
   </ItemGroup>
 
