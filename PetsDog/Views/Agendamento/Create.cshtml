@@ -1,0 +1,44 @@
+@model PetsDog.Models.Agendamento
+
+@{
+    ViewData["Title"] = "Novo Agendamento";
+}
+
+<h1 class="mb-3">Novo Agendamento</h1>
+
+<form asp-action="Create" method="post" class="row g-3">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="col-md-6">
+        <label asp-for="ClienteId" class="form-label"></label>
+        <input asp-for="ClienteId" class="form-control" />
+        <span asp-validation-for="ClienteId" class="text-danger"></span>
+    </div>
+
+    <div class="col-md-6">
+        <label asp-for="PetId" class="form-label"></label>
+        <input asp-for="PetId" class="form-control" />
+        <span asp-validation-for="PetId" class="text-danger"></span>
+    </div>
+
+    <div class="col-md-6">
+        <label asp-for="DataHora" class="form-label"></label>
+        <input asp-for="DataHora" class="form-control" type="datetime-local" value="@Model.DataHora.ToString("yyyy-MM-ddTHH:mm")" />
+        <span asp-validation-for="DataHora" class="text-danger"></span>
+    </div>
+
+    <div class="col-md-6">
+        <label asp-for="Status" class="form-label"></label>
+        <input asp-for="Status" class="form-control" />
+        <span asp-validation-for="Status" class="text-danger"></span>
+    </div>
+
+    <div class="col-12 d-flex gap-2">
+        <button type="submit" class="btn btn-primary">Salvar</button>
+        <a asp-action="Index" class="btn btn-outline-secondary">Voltar</a>
+    </div>
+</form>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

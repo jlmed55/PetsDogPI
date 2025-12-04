@@ -1,7 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using PetsDog.Models;
-using System.Reflection.Emit;
 
 namespace PetsDog.Data.Configuration
 {
@@ -9,25 +8,16 @@ namespace PetsDog.Data.Configuration
     {
         public void Configure(EntityTypeBuilder<Agendamento> builder)
         {
-            builder.HasKey(a => a.id_agendamento);
+            builder.HasKey(a => a.Id);
 
-            builder
-                .HasOne(ag => ag.Animal)
-                .WithMany(a => a.Agendamentos)
-                .HasForeignKey(ag => ag.id_animal)
-                .OnDelete(DeleteBehavior.Cascade);
+            builder.Property(a => a.ClienteId)
+                .IsRequired();
 
-            builder
-                .HasOne(ag => ag.Servico)
-                .WithMany()
-                .HasForeignKey(ag => ag.id_servico)
-                .OnDelete(DeleteBehavior.Cascade);
+            builder.Property(a => a.PetId)
+                .IsRequired();
 
-            builder
-                .HasOne(ag => ag.Profissional)
-                .WithMany()
-                .HasForeignKey(ag => ag.id_profissional)
-                .OnDelete(DeleteBehavior.Cascade);
+            builder.Property(a => a.DataHora)
+                .IsRequired();
         }
     }
 }

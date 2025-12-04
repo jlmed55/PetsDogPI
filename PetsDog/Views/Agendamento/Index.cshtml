@@ -1,9 +1,46 @@
-﻿@model Agendamento;
+@using System.Linq
+@model IEnumerable<PetsDog.Models.Agendamento>
 
 @{
-    ViewData["Title"] = "Agendamento";
+    ViewData["Title"] = "Agendamentos";
 }
 
-<h1>Agendamento</h1>
+<h1 class="mb-3">Agendamentos</h1>
 
-<div>Aqui colarei o form de informações</div>
+<div class="mb-3">
+    <a class="btn btn-primary" asp-action="Create">Novo agendamento</a>
+</div>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">Nenhum agendamento cadastrado.</div>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Cliente</th>
+                <th>Pet</th>
+                <th>Data e Hora</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ClienteId</td>
+                <td>@item.PetId</td>
+                <td>@item.DataHora.ToString("dd/MM/yyyy HH:mm")</td>
+                <td>@(string.IsNullOrWhiteSpace(item.Status) ? "-" : item.Status)</td>
+                <td class="text-end">
+                    <a class="btn btn-sm btn-secondary" asp-action="Edit" asp-route-id="@item.Id">Editar</a>
+                    <a class="btn btn-sm btn-outline-danger" asp-action="Delete" asp-route-id="@item.Id">Excluir</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
