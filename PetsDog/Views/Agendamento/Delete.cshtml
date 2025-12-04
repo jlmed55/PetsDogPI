@@ -1,0 +1,36 @@
+@model PetsDog.Models.Agendamento
+
+@{
+    ViewData["Title"] = "Excluir Agendamento";
+}
+
+<div class="page-header">
+    <div>
+        <h1 class="page-title text-danger">Excluir Agendamento</h1>
+        <p class="subtitle">Esta ação não pode ser desfeita. Confirme para remover o agendamento.</p>
+    </div>
+</div>
+
+<div class="card-panel">
+    <div class="alert alert-warning">Tem certeza que deseja remover este agendamento?</div>
+
+    <dl class="row mb-4">
+        <dt class="col-sm-3">Cliente</dt>
+        <dd class="col-sm-9">@Model.ClienteId</dd>
+
+        <dt class="col-sm-3">Pet</dt>
+        <dd class="col-sm-9">@Model.PetId</dd>
+
+        <dt class="col-sm-3">Data e Hora</dt>
+        <dd class="col-sm-9">@Model.DataHora.ToString("dd/MM/yyyy HH:mm")</dd>
+
+        <dt class="col-sm-3">Status</dt>
+        <dd class="col-sm-9">@(string.IsNullOrWhiteSpace(Model.Status) ? "-" : Model.Status)</dd>
+    </dl>
+
+    <form asp-action="Delete" method="post" class="d-flex gap-2">
+        <input type="hidden" asp-for="Id" />
+        <button type="submit" class="btn btn-danger">Confirmar</button>
+        <a asp-action="Index" class="btn btn-outline-secondary">Cancelar</a>
+    </form>
+</div>

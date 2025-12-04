@@ -1,26 +1,20 @@
-﻿using Microsoft.AspNetCore.Mvc.ActionConstraints;
+using System.ComponentModel.DataAnnotations;
 
 namespace PetsDog.Models
 {
     public class Agendamento
     {
+        public int Id { get; set; }
 
-        public  int id_agendamento {  get; set; }
+        [Required]
+        public int ClienteId { get; set; }
 
-        public DateTime  data_hora { get; set; }
+        [Required]
+        public int PetId { get; set; }
 
-        public string? status { get; set; }
+        [Required]
+        public DateTime DataHora { get; set; }
 
-        public  int id_animal { get; set; }
-
-        public int id_servico { get; set; }
-
-        public int id_profissional { get; set; }
-
-        public Animal? Animal { get; set; }
-        public Servico? Servico { get; set; }
-        public Profissional? Profissional { get; set; }
-
-
+        public string? Status { get; set; }
     }
 }
