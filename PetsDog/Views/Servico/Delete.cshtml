@@ -1,13 +1,32 @@
-﻿@{
-	ViewData["Title"] = "Fornecedores";
+@model PetsDog.Models.Servico
+@{
+    ViewData["Title"] = "Excluir Serviço";
 }
-@model ProjetoMVC.Models.Fornecedor
 
-	<div class="text-center">
-		<h1>CRUD de Produtos</h1>
-		<p>Tem certeza que deseja excluir o produto @Model.Nome?</p>
-		<form asp-action="DeleteConfirmed" method="post">
-			<input type="hidden" asp-for="Id" />
-			<button type="submit">Confirmar Exclusão</button>
-		</form>
-	</div>
+<div class="page-header">
+    <div>
+        <h1 class="page-title text-danger">Excluir Serviço</h1>
+        <p class="subtitle">Confirme a remoção definitiva deste serviço.</p>
+    </div>
+</div>
+
+<div class="card-panel">
+    <div class="alert alert-warning">Esta ação não pode ser desfeita. Verifique os dados antes de confirmar.</div>
+
+    <dl class="row mb-4">
+        <dt class="col-sm-3">Nome</dt>
+        <dd class="col-sm-9">@Model.nome</dd>
+
+        <dt class="col-sm-3">Duração (min)</dt>
+        <dd class="col-sm-9">@Model.duracao_min</dd>
+
+        <dt class="col-sm-3">Preço</dt>
+        <dd class="col-sm-9">@Model.preco.ToString("C")</dd>
+    </dl>
+
+    <form asp-action="DeleteConfirmed" method="post" class="d-flex gap-2">
+        <input type="hidden" asp-for="Idservico" />
+        <button type="submit" class="btn btn-danger">Confirmar</button>
+        <a asp-action="Index" class="btn btn-outline-secondary">Cancelar</a>
+    </form>
+</div>
