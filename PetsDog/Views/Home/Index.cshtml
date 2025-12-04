@@ -1,8 +1,86 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+@{
+    ViewData["Title"] = "Início";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<section class="hero">
+    <div class="hero__content">
+        <span class="eyebrow">Cuidamos com carinho</span>
+        <h1>Experiência premium para pets e humanos</h1>
+        <p>
+            Agende serviços, organize a rotina do seu pet e acompanhe tudo em uma interface fluida,
+            elegante e totalmente funcional.
+        </p>
+        <div class="hero__actions">
+            <a class="btn btn-primary" asp-controller="Agendamento" asp-action="Index">Ver agendamentos</a>
+            <a class="btn btn-outline-secondary" asp-controller="Servico" asp-action="Index">Conhecer serviços</a>
+        </div>
+        <div class="hero__badges">
+            <div class="badge-pill">UI renovada</div>
+            <div class="badge-pill">Fluxos otimizados</div>
+            <div class="badge-pill">Pronto para uso</div>
+        </div>
+    </div>
+    <div class="hero__panel">
+        <div class="panel-card">
+            <div class="panel-card__header">
+                <p class="text-muted mb-1">Resumo rápido</p>
+                <h3 class="mb-0">Seu dia de cuidados</h3>
+            </div>
+            <ul class="panel-list">
+                <li>
+                    <div>
+                        <p class="label">Próximos agendamentos</p>
+                        <strong>Organize e edite em poucos cliques.</strong>
+                    </div>
+                    <span class="pill pill-blue">Em tempo real</span>
+                </li>
+                <li>
+                    <div>
+                        <p class="label">Catálogo de serviços</p>
+                        <strong>Visual limpo com preços claros.</strong>
+                    </div>
+                    <span class="pill pill-green">Atualizado</span>
+                </li>
+                <li>
+                    <div>
+                        <p class="label">Fluxo consistente</p>
+                        <strong>Mesma linguagem visual em todo o site.</strong>
+                    </div>
+                    <span class="pill pill-purple">UX</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="grid-features">
+    <article class="feature">
+        <div class="feature__icon">💙</div>
+        <h3>Identidade em azul premium</h3>
+        <p>Contraste elegante, cartões elevados e botões com microinterações para uma navegação agradável.</p>
+    </article>
+    <article class="feature">
+        <div class="feature__icon">📋</div>
+        <h3>Formulários inteligentes</h3>
+        <p>Campos alinhados, mensagens de validação visíveis e fluxos claros para criar, editar ou excluir.</p>
+    </article>
+    <article class="feature">
+        <div class="feature__icon">🗂️</div>
+        <h3>Organização intuitiva</h3>
+        <p>Listas com rótulos, badges de status e ações destacadas, mantendo tudo pronto para uso imediato.</p>
+    </article>
+</section>
+
+<section class="cta-section">
+    <div>
+        <p class="eyebrow">Tudo pronto</p>
+        <h2>Gerencie o Pet Shop em um só lugar</h2>
+        <p class="text-muted mb-4">Acesse serviços, agendamentos e políticas de privacidade com a mesma linguagem visual.</p>
+        <a class="btn btn-primary" asp-controller="Servico" asp-action="Index">Começar agora</a>
+    </div>
+    <div class="cta-card">
+        <p class="label">Dica rápida</p>
+        <h4>Use o menu superior para alternar entre as áreas.</h4>
+        <p class="text-muted">Todo o projeto está funcional e harmonizado na nova paleta azul.</p>
+    </div>
+</section>

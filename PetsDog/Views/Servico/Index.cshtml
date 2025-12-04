@@ -1,0 +1,50 @@
+@model IEnumerable<PetsDog.Models.Servico>
+@{
+    ViewData["Title"] = "Serviços";
+}
+
+<div class="page-header">
+    <div>
+        <h1 class="page-title">Serviços</h1>
+        <p class="subtitle">Catálogo organizado com ações rápidas para manter tudo funcional.</p>
+    </div>
+    <div class="action-bar">
+        <a class="btn btn-primary" asp-action="Create">Cadastrar serviço</a>
+    </div>
+</div>
+
+<div class="card-panel">
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info mb-0">Nenhum serviço cadastrado. Comece adicionando o primeiro.</div>
+    }
+    else
+    {
+        <table class="table table-striped align-middle">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Duração (min)</th>
+                    <th>Preço</th>
+                    <th class="text-end">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var servico in Model)
+            {
+                <tr>
+                    <td class="fw-semibold">@servico.nome</td>
+                    <td>@servico.duracao_min</td>
+                    <td>@servico.preco.ToString("C")</td>
+                    <td class="text-end">
+                        <div class="action-bar justify-content-end">
+                            <a class="btn btn-sm btn-secondary" asp-action="Edit" asp-route-id="@servico.Idservico">Editar</a>
+                            <a class="btn btn-sm btn-outline-danger" asp-action="Delete" asp-route-id="@servico.Idservico">Excluir</a>
+                        </div>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    }
+</div>
