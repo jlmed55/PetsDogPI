@@ -11,6 +11,20 @@ options.UseMySql(builder.Configuration.GetConnectionString(
     "DefaultConnection"), new MySqlServerVersion(
      new Version(8, 0, 33))));
 
+var allowedOrigins = builder.Configuration["ALLOWED_ORIGINS"] ?? string.Empty;
+var origins = allowedOrigins
+    .Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AgendamentoCors", policy =>
+    {
+        policy.WithOrigins(origins)
+              .WithMethods("GET", "POST", "PUT", "DELETE")
+              .WithHeaders("Content-Type", "Authorization");
+    });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -25,6 +39,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseSession();
 app.UseRouting();
+app.UseCors();
 app.UseAuthentication();
 app.UseAuthorization();
 
