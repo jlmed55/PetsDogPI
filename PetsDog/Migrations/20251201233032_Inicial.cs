@@ -103,78 +103,22 @@ namespace PetsDog.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Agendamento",
+                name: "Agendamentos",
                 columns: table => new
                 {
-                    id_agendamento = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    data_hora = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    status = table.Column<string>(type: "longtext", nullable: true)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    id_animal = table.Column<int>(type: "int", nullable: false),
-                    id_servico = table.Column<int>(type: "int", nullable: false),
-                    id_profissional = table.Column<int>(type: "int", nullable: false),
-                    Profissionalid_profissional = table.Column<int>(type: "int", nullable: true),
-                    ServicoIdservico = table.Column<int>(type: "int", nullable: true)
+                    ClienteId = table.Column<int>(type: "int", nullable: false),
+                    PetId = table.Column<int>(type: "int", nullable: false),
+                    DataHora = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    Status = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Agendamento", x => x.id_agendamento);
-                    table.ForeignKey(
-                        name: "FK_Agendamento_Animals_id_animal",
-                        column: x => x.id_animal,
-                        principalTable: "Animals",
-                        principalColumn: "id_animal",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Agendamento_Profissionais_Profissionalid_profissional",
-                        column: x => x.Profissionalid_profissional,
-                        principalTable: "Profissionais",
-                        principalColumn: "id_profissional");
-                    table.ForeignKey(
-                        name: "FK_Agendamento_Profissionais_id_profissional",
-                        column: x => x.id_profissional,
-                        principalTable: "Profissionais",
-                        principalColumn: "id_profissional",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Agendamento_Servicos_ServicoIdservico",
-                        column: x => x.ServicoIdservico,
-                        principalTable: "Servicos",
-                        principalColumn: "Idservico");
-                    table.ForeignKey(
-                        name: "FK_Agendamento_Servicos_id_servico",
-                        column: x => x.id_servico,
-                        principalTable: "Servicos",
-                        principalColumn: "Idservico",
-                        onDelete: ReferentialAction.Cascade);
+                    table.PrimaryKey("PK_Agendamentos", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Agendamento_id_animal",
-                table: "Agendamento",
-                column: "id_animal");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Agendamento_id_profissional",
-                table: "Agendamento",
-                column: "id_profissional");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Agendamento_id_servico",
-                table: "Agendamento",
-                column: "id_servico");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Agendamento_Profissionalid_profissional",
-                table: "Agendamento",
-                column: "Profissionalid_profissional");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Agendamento_ServicoIdservico",
-                table: "Agendamento",
-                column: "ServicoIdservico");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Animals_Id_cliente",
@@ -186,7 +130,7 @@ namespace PetsDog.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Agendamento");
+                name: "Agendamentos");
 
             migrationBuilder.DropTable(
                 name: "Animals");
