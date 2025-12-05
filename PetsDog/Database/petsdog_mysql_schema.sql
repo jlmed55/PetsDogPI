@@ -5,7 +5,7 @@ CREATE DATABASE IF NOT EXISTS `PetsDog` CHARACTER SET utf8mb4 COLLATE utf8mb4_ge
 USE `PetsDog`;
 
 -- Remoção opcional das tabelas para recriação limpa
-DROP TABLE IF EXISTS `Agendamento`;
+DROP TABLE IF EXISTS `Agendamentos`;
 DROP TABLE IF EXISTS `Animals`;
 DROP TABLE IF EXISTS `Servicos`;
 DROP TABLE IF EXISTS `Profissionais`;
@@ -50,24 +50,18 @@ CREATE TABLE `Animals` (
   CONSTRAINT `FK_Animals_Clientes_Id_cliente` FOREIGN KEY (`Id_cliente`) REFERENCES `Clientes`(`Idcliente`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-CREATE TABLE `Agendamento` (
+CREATE TABLE `Agendamentos` (
   `id_agendamento` int NOT NULL AUTO_INCREMENT,
-  `data_hora` datetime(6) NOT NULL,
-  `status` longtext NULL,
   `id_animal` int NOT NULL,
   `id_servico` int NOT NULL,
   `id_profissional` int NOT NULL,
-  `Profissionalid_profissional` int NULL,
-  `ServicoIdservico` int NULL,
+  `data_hora` datetime(6) NOT NULL,
+  `status` longtext NULL,
   PRIMARY KEY (`id_agendamento`),
-  KEY `IX_Agendamento_id_animal` (`id_animal`),
-  KEY `IX_Agendamento_id_profissional` (`id_profissional`),
-  KEY `IX_Agendamento_id_servico` (`id_servico`),
-  KEY `IX_Agendamento_Profissionalid_profissional` (`Profissionalid_profissional`),
-  KEY `IX_Agendamento_ServicoIdservico` (`ServicoIdservico`),
-  CONSTRAINT `FK_Agendamento_Animals_id_animal` FOREIGN KEY (`id_animal`) REFERENCES `Animals`(`id_animal`) ON DELETE CASCADE,
-  CONSTRAINT `FK_Agendamento_Profissionais_id_profissional` FOREIGN KEY (`id_profissional`) REFERENCES `Profissionais`(`id_profissional`) ON DELETE CASCADE,
-  CONSTRAINT `FK_Agendamento_Profissionais_Profissionalid_profissional` FOREIGN KEY (`Profissionalid_profissional`) REFERENCES `Profissionais`(`id_profissional`),
-  CONSTRAINT `FK_Agendamento_Servicos_id_servico` FOREIGN KEY (`id_servico`) REFERENCES `Servicos`(`Idservico`) ON DELETE CASCADE,
-  CONSTRAINT `FK_Agendamento_Servicos_ServicoIdservico` FOREIGN KEY (`ServicoIdservico`) REFERENCES `Servicos`(`Idservico`)
+  KEY `IX_Agendamentos_id_animal` (`id_animal`),
+  KEY `IX_Agendamentos_id_servico` (`id_servico`),
+  KEY `IX_Agendamentos_id_profissional` (`id_profissional`),
+  CONSTRAINT `FK_Agendamentos_Animals_id_animal` FOREIGN KEY (`id_animal`) REFERENCES `Animals`(`id_animal`) ON DELETE CASCADE,
+  CONSTRAINT `FK_Agendamentos_Servicos_id_servico` FOREIGN KEY (`id_servico`) REFERENCES `Servicos`(`Idservico`) ON DELETE CASCADE,
+  CONSTRAINT `FK_Agendamentos_Profissionais_id_profissional` FOREIGN KEY (`id_profissional`) REFERENCES `Profissionais`(`id_profissional`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

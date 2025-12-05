@@ -7,14 +7,21 @@ namespace PetsDog.Models
         public int Id { get; set; }
 
         [Required]
-        public int ClienteId { get; set; }
+        public int AnimalId { get; set; }
 
         [Required]
-        public int PetId { get; set; }
+        public int ServicoId { get; set; }
+
+        [Required]
+        public int ProfissionalId { get; set; }
 
         [Required]
         public DateTime DataHora { get; set; }
 
         public string? Status { get; set; }
+
+        public Animal? Animal { get; set; }
+        public Servico? Servico { get; set; }
+        public Profissional? Profissional { get; set; }
     }
 }

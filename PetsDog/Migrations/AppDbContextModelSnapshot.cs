@@ -26,23 +26,38 @@ namespace PetsDog.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("id_agendamento");
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("ClienteId")
-                        .HasColumnType("int");
+                    b.Property<int>("AnimalId")
+                        .HasColumnType("int")
+                        .HasColumnName("id_animal");
 
                     b.Property<DateTime>("DataHora")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("datetime(6)")
+                        .HasColumnName("data_hora");
 
-                    b.Property<int>("PetId")
-                        .HasColumnType("int");
+                    b.Property<int>("ProfissionalId")
+                        .HasColumnType("int")
+                        .HasColumnName("id_profissional");
+
+                    b.Property<int>("ServicoId")
+                        .HasColumnType("int")
+                        .HasColumnName("id_servico");
 
                     b.Property<string>("Status")
-                        .HasColumnType("longtext");
+                        .HasColumnType("longtext")
+                        .HasColumnName("status");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AnimalId");
+
+                    b.HasIndex("ProfissionalId");
+
+                    b.HasIndex("ServicoId");
 
                     b.ToTable("Agendamentos");
                 });
@@ -154,6 +169,42 @@ namespace PetsDog.Migrations
 
             modelBuilder.Entity("PetsDog.Models.Agendamento", b =>
                 {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id_agendamento");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AnimalId")
+                        .HasColumnType("int")
+                        .HasColumnName("id_animal");
+
+                    b.Property<DateTime>("DataHora")
+                        .HasColumnType("datetime(6)")
+                        .HasColumnName("data_hora");
+
+                    b.Property<int>("ProfissionalId")
+                        .HasColumnType("int")
+                        .HasColumnName("id_profissional");
+
+                    b.Property<int>("ServicoId")
+                        .HasColumnType("int")
+                        .HasColumnName("id_servico");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("longtext")
+                        .HasColumnName("status");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AnimalId");
+
+                    b.HasIndex("ProfissionalId");
+
+                    b.HasIndex("ServicoId");
+
+                    b.ToTable("Agendamentos");
                 });
 
             modelBuilder.Entity("PetsDog.Models.Animal", b =>
@@ -175,6 +226,33 @@ namespace PetsDog.Migrations
             modelBuilder.Entity("PetsDog.Models.Cliente", b =>
                 {
                     b.Navigation("Animals");
+                });
+
+            modelBuilder.Entity("PetsDog.Models.Agendamento", b =>
+                {
+                    b.HasOne("PetsDog.Models.Animal", "Animal")
+                        .WithMany("Agendamentos")
+                        .HasForeignKey("AnimalId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PetsDog.Models.Profissional", "Profissional")
+                        .WithMany("Agendamentos")
+                        .HasForeignKey("ProfissionalId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PetsDog.Models.Servico", "Servico")
+                        .WithMany("Agendamentos")
+                        .HasForeignKey("ServicoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Animal");
+
+                    b.Navigation("Profissional");
+
+                    b.Navigation("Servico");
                 });
 
             modelBuilder.Entity("PetsDog.Models.Profissional", b =>
