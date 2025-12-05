@@ -24,46 +24,27 @@ namespace PetsDog.Migrations
 
             modelBuilder.Entity("PetsDog.Models.Agendamento", b =>
                 {
-                    b.Property<int>("id_agendamento")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("id_agendamento"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("Profissionalid_profissional")
+                    b.Property<int>("ClienteId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ServicoIdservico")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("data_hora")
+                    b.Property<DateTime>("DataHora")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int>("id_animal")
+                    b.Property<int>("PetId")
                         .HasColumnType("int");
 
-                    b.Property<int>("id_profissional")
-                        .HasColumnType("int");
-
-                    b.Property<int>("id_servico")
-                        .HasColumnType("int");
-
-                    b.Property<string>("status")
+                    b.Property<string>("Status")
                         .HasColumnType("longtext");
 
-                    b.HasKey("id_agendamento");
+                    b.HasKey("Id");
 
-                    b.HasIndex("Profissionalid_profissional");
-
-                    b.HasIndex("ServicoIdservico");
-
-                    b.HasIndex("id_animal");
-
-                    b.HasIndex("id_profissional");
-
-                    b.HasIndex("id_servico");
-
-                    b.ToTable("Agendamento");
+                    b.ToTable("Agendamentos");
                 });
 
             modelBuilder.Entity("PetsDog.Models.Animal", b =>
@@ -173,37 +154,6 @@ namespace PetsDog.Migrations
 
             modelBuilder.Entity("PetsDog.Models.Agendamento", b =>
                 {
-                    b.HasOne("PetsDog.Models.Profissional", null)
-                        .WithMany("Agendamentos")
-                        .HasForeignKey("Profissionalid_profissional");
-
-                    b.HasOne("PetsDog.Models.Servico", null)
-                        .WithMany("Agendamentos")
-                        .HasForeignKey("ServicoIdservico");
-
-                    b.HasOne("PetsDog.Models.Animal", "Animal")
-                        .WithMany("Agendamentos")
-                        .HasForeignKey("id_animal")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("PetsDog.Models.Profissional", "Profissional")
-                        .WithMany()
-                        .HasForeignKey("id_profissional")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("PetsDog.Models.Servico", "Servico")
-                        .WithMany()
-                        .HasForeignKey("id_servico")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Animal");
-
-                    b.Navigation("Profissional");
-
-                    b.Navigation("Servico");
                 });
 
             modelBuilder.Entity("PetsDog.Models.Animal", b =>
