@@ -9,7 +9,7 @@ namespace PetsDog.Data.Configuration
     {
         public void Configure(EntityTypeBuilder<Profissional> builder)
         {
-            builder.HasKey(p => p.id_profissional);
+            builder.HasKey(p => p.IdProfissional);
         }
     }
 }

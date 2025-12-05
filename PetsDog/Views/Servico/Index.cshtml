@@ -30,12 +30,12 @@
                 </tr>
             </thead>
             <tbody>
-            @foreach (var servico in Model)
-            {
-                <tr>
-                    <td class="fw-semibold">@servico.nome</td>
-                    <td>@servico.duracao_min</td>
-                    <td>@servico.preco.ToString("C")</td>
+                @foreach (var servico in Model)
+                {
+                    <tr>
+                        <td class="fw-semibold">@servico.Nome</td>
+                        <td>@servico.DuracaoMin</td>
+                        <td>@servico.Preco.ToString("C")</td>
                     <td class="text-end">
                         <div class="action-bar justify-content-end">
                             <a class="btn btn-sm btn-secondary" asp-action="Edit" asp-route-id="@servico.Idservico">Editar</a>
