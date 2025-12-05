@@ -15,16 +15,22 @@
     <form asp-action="Create" method="post" class="row g-3">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-        <div class="col-md-6">
-            <label asp-for="ClienteId" class="form-label"></label>
-            <input asp-for="ClienteId" class="form-control" />
-            <span asp-validation-for="ClienteId" class="text-danger"></span>
+        <div class="col-md-4">
+            <label asp-for="AnimalId" class="form-label"></label>
+            <input asp-for="AnimalId" class="form-control" />
+            <span asp-validation-for="AnimalId" class="text-danger"></span>
         </div>
 
-        <div class="col-md-6">
-            <label asp-for="PetId" class="form-label"></label>
-            <input asp-for="PetId" class="form-control" />
-            <span asp-validation-for="PetId" class="text-danger"></span>
+        <div class="col-md-4">
+            <label asp-for="ServicoId" class="form-label"></label>
+            <input asp-for="ServicoId" class="form-control" />
+            <span asp-validation-for="ServicoId" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-4">
+            <label asp-for="ProfissionalId" class="form-label"></label>
+            <input asp-for="ProfissionalId" class="form-control" />
+            <span asp-validation-for="ProfissionalId" class="text-danger"></span>
         </div>
 
         <div class="col-md-6">

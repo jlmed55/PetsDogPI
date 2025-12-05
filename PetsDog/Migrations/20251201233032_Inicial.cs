@@ -106,19 +106,53 @@ namespace PetsDog.Migrations
                 name: "Agendamentos",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    id_agendamento = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    ClienteId = table.Column<int>(type: "int", nullable: false),
-                    PetId = table.Column<int>(type: "int", nullable: false),
-                    DataHora = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    Status = table.Column<string>(type: "longtext", nullable: true)
+                    id_animal = table.Column<int>(type: "int", nullable: false),
+                    id_servico = table.Column<int>(type: "int", nullable: false),
+                    id_profissional = table.Column<int>(type: "int", nullable: false),
+                    data_hora = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    status = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Agendamentos", x => x.Id);
+                    table.PrimaryKey("PK_Agendamentos", x => x.id_agendamento);
+                    table.ForeignKey(
+                        name: "FK_Agendamentos_Animals_id_animal",
+                        column: x => x.id_animal,
+                        principalTable: "Animals",
+                        principalColumn: "id_animal",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Agendamentos_Profissionais_id_profissional",
+                        column: x => x.id_profissional,
+                        principalTable: "Profissionais",
+                        principalColumn: "id_profissional",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Agendamentos_Servicos_id_servico",
+                        column: x => x.id_servico,
+                        principalTable: "Servicos",
+                        principalColumn: "Idservico",
+                        onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Agendamentos_id_animal",
+                table: "Agendamentos",
+                column: "id_animal");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Agendamentos_id_profissional",
+                table: "Agendamentos",
+                column: "id_profissional");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Agendamentos_id_servico",
+                table: "Agendamentos",
+                column: "id_servico");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Animals_Id_cliente",
