@@ -1,4 +1,4 @@
-@model PetsDog.Models.Agendamento
+@model PetsDog.Models.ViewModels.AgendamentoFormViewModel
 
 @{
     ViewData["Title"] = "Novo Agendamento";
@@ -16,39 +16,39 @@
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
         <div class="col-md-4">
-            <label asp-for="AnimalId" class="form-label">Animal</label>
-            <select asp-for="AnimalId" asp-items="ViewBag.Animais" class="form-select">
+            <label asp-for="Agendamento.AnimalId" class="form-label">Animal</label>
+            <select asp-for="Agendamento.AnimalId" asp-items="Model.Animais" class="form-select">
                 <option value="">Selecione um animal</option>
             </select>
-            <span asp-validation-for="AnimalId" class="text-danger"></span>
+            <span asp-validation-for="Agendamento.AnimalId" class="text-danger"></span>
         </div>
 
         <div class="col-md-4">
-            <label asp-for="ServicoId" class="form-label">Serviço</label>
-            <select asp-for="ServicoId" asp-items="ViewBag.Servicos" class="form-select">
+            <label asp-for="Agendamento.ServicoId" class="form-label">Serviço</label>
+            <select asp-for="Agendamento.ServicoId" asp-items="Model.Servicos" class="form-select">
                 <option value="">Selecione um serviço</option>
             </select>
-            <span asp-validation-for="ServicoId" class="text-danger"></span>
+            <span asp-validation-for="Agendamento.ServicoId" class="text-danger"></span>
         </div>
 
         <div class="col-md-4">
-            <label asp-for="ProfissionalId" class="form-label">Profissional</label>
-            <select asp-for="ProfissionalId" asp-items="ViewBag.Profissionais" class="form-select">
+            <label asp-for="Agendamento.ProfissionalId" class="form-label">Profissional</label>
+            <select asp-for="Agendamento.ProfissionalId" asp-items="Model.Profissionais" class="form-select">
                 <option value="">Selecione um profissional</option>
             </select>
-            <span asp-validation-for="ProfissionalId" class="text-danger"></span>
+            <span asp-validation-for="Agendamento.ProfissionalId" class="text-danger"></span>
         </div>
 
         <div class="col-md-6">
-            <label asp-for="DataHora" class="form-label"></label>
-            <input asp-for="DataHora" class="form-control" type="datetime-local" value="@Model.DataHora.ToString("yyyy-MM-ddTHH:mm")" />
-            <span asp-validation-for="DataHora" class="text-danger"></span>
+            <label asp-for="Agendamento.DataHora" class="form-label"></label>
+            <input asp-for="Agendamento.DataHora" class="form-control" type="datetime-local" value="@Model.Agendamento.DataHora.ToString("yyyy-MM-ddTHH:mm")" />
+            <span asp-validation-for="Agendamento.DataHora" class="text-danger"></span>
         </div>
 
         <div class="col-md-6">
-            <label asp-for="Status" class="form-label"></label>
-            <input asp-for="Status" class="form-control" />
-            <span asp-validation-for="Status" class="text-danger"></span>
+            <label asp-for="Agendamento.Status" class="form-label"></label>
+            <input asp-for="Agendamento.Status" class="form-control" />
+            <span asp-validation-for="Agendamento.Status" class="text-danger"></span>
         </div>
 
         <div class="col-12 d-flex gap-2">
