@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using PetsDog.Data;
 using PetsDog.Models;
+using PetsDog.Models.ViewModels;
 
 namespace PetsDog.Controllers
 {
@@ -31,24 +32,24 @@ namespace PetsDog.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            PopularSeletores();
-            return View(new Agendamento
+            var viewModel = PopularSeletores(new Agendamento
             {
                 DataHora = DateTime.Now
             });
+            return View(viewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Agendamento agendamento)
+        public async Task<IActionResult> Create(AgendamentoFormViewModel viewModel)
         {
             if (!ModelState.IsValid)
             {
-                PopularSeletores();
-                return View(agendamento);
+                viewModel = PopularSeletores(viewModel.Agendamento);
+                return View(viewModel);
             }
 
-            _context.Agendamentos.Add(agendamento);
+            _context.Agendamentos.Add(viewModel.Agendamento);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
@@ -62,21 +63,21 @@ namespace PetsDog.Controllers
                 return NotFound();
             }
 
-            PopularSeletores();
-            return View(agendamento);
+            var viewModel = PopularSeletores(agendamento);
+            return View(viewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Agendamento agendamento)
+        public async Task<IActionResult> Edit(AgendamentoFormViewModel viewModel)
         {
             if (!ModelState.IsValid)
             {
-                PopularSeletores();
-                return View(agendamento);
+                viewModel = PopularSeletores(viewModel.Agendamento);
+                return View(viewModel);
             }
 
-            _context.Agendamentos.Update(agendamento);
+            _context.Agendamentos.Update(viewModel.Agendamento);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
@@ -112,7 +113,7 @@ namespace PetsDog.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private void PopularSeletores()
+        private AgendamentoFormViewModel PopularSeletores(Agendamento agendamento)
         {
             var animais = _context.Animals
                 .Include(a => a.Cliente)
@@ -123,9 +124,13 @@ namespace PetsDog.Controllers
                 })
                 .ToList();
 
-            ViewBag.Animais = new SelectList(animais, "id_animal", "Nome");
-            ViewBag.Servicos = new SelectList(_context.Servicos.AsNoTracking().ToList(), "Idservico", "nome");
-            ViewBag.Profissionais = new SelectList(_context.Profissionais.AsNoTracking().ToList(), "id_profissional", "nome");
+            return new AgendamentoFormViewModel
+            {
+                Agendamento = agendamento,
+                Animais = new SelectList(animais, "id_animal", "Nome", agendamento.AnimalId),
+                Servicos = new SelectList(_context.Servicos.AsNoTracking().ToList(), "Idservico", "nome", agendamento.ServicoId),
+                Profissionais = new SelectList(_context.Profissionais.AsNoTracking().ToList(), "id_profissional", "nome", agendamento.ProfissionalId)
+            };
         }
     }
 }

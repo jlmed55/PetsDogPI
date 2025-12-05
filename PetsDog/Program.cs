@@ -1,8 +1,18 @@
 using Microsoft.EntityFrameworkCore;
 using PetsDog.Data;
 using PetsDog.Database;
+using System.IO;
 
-var builder = WebApplication.CreateBuilder(args);
+var baseDirectory = Directory.GetCurrentDirectory();
+var contentRoot = Directory.Exists(Path.Combine(baseDirectory, "Views"))
+    ? baseDirectory
+    : Path.Combine(baseDirectory, "PetsDog");
+
+var builder = WebApplication.CreateBuilder(new WebApplicationOptions
+{
+    Args = args,
+    ContentRootPath = contentRoot
+});
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
