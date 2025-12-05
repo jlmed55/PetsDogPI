@@ -10,6 +10,8 @@ namespace PetsDog.Data.Configuration
         {
             builder.HasKey(a => a.Id);
 
+            builder.ToTable("Agendamentos");
+
             builder.Property(a => a.ClienteId)
                 .IsRequired();
 
