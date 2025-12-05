@@ -1,0 +1,50 @@
+@model IEnumerable<PetsDog.Models.Profissional>
+@{
+    ViewData["Title"] = "Profissionais";
+}
+
+<div class="page-header">
+    <div>
+        <h1 class="page-title">Profissionais</h1>
+        <p class="subtitle">Cadastre os colaboradores para habilitar novos agendamentos.</p>
+    </div>
+    <div class="action-bar">
+        <a class="btn btn-primary" asp-action="Create">Cadastrar profissional</a>
+    </div>
+</div>
+
+<div class="card-panel">
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info mb-0">Nenhum profissional cadastrado.</div>
+    }
+    else
+    {
+        <table class="table table-striped align-middle">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Especialidade</th>
+                    <th>Disponibilidade</th>
+                    <th class="text-end">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var profissional in Model)
+            {
+                <tr>
+                    <td class="fw-semibold">@profissional.nome</td>
+                    <td>@profissional.especialidade</td>
+                    <td>@profissional.DisponibilidadeInicio - @profissional.DiponibilidadeFim</td>
+                    <td class="text-end">
+                        <div class="action-bar justify-content-end">
+                            <a class="btn btn-sm btn-secondary" asp-action="Edit" asp-route-id="@profissional.id_profissional">Editar</a>
+                            <a class="btn btn-sm btn-outline-danger" asp-action="Delete" asp-route-id="@profissional.id_profissional">Excluir</a>
+                        </div>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    }
+</div>

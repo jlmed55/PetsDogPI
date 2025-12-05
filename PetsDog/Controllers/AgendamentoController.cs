@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using PetsDog.Data;
 using PetsDog.Models;
 
@@ -18,6 +19,9 @@ namespace PetsDog.Controllers
         public async Task<IActionResult> Index()
         {
             var agendamentos = await _context.Agendamentos
+                .Include(a => a.Animal)
+                .Include(a => a.Servico)
+                .Include(a => a.Profissional)
                 .AsNoTracking()
                 .OrderBy(a => a.DataHora)
                 .ToListAsync();
@@ -27,6 +31,7 @@ namespace PetsDog.Controllers
         [HttpGet]
         public IActionResult Create()
         {
+            PopularSeletores();
             return View(new Agendamento
             {
                 DataHora = DateTime.Now
@@ -39,6 +44,7 @@ namespace PetsDog.Controllers
         {
             if (!ModelState.IsValid)
             {
+                PopularSeletores();
                 return View(agendamento);
             }
 
@@ -56,6 +62,7 @@ namespace PetsDog.Controllers
                 return NotFound();
             }
 
+            PopularSeletores();
             return View(agendamento);
         }
 
@@ -65,6 +72,7 @@ namespace PetsDog.Controllers
         {
             if (!ModelState.IsValid)
             {
+                PopularSeletores();
                 return View(agendamento);
             }
 
@@ -77,6 +85,9 @@ namespace PetsDog.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var agendamento = await _context.Agendamentos
+                .Include(a => a.Animal)
+                .Include(a => a.Servico)
+                .Include(a => a.Profissional)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(a => a.Id == id);
             if (agendamento == null)
@@ -99,6 +110,22 @@ namespace PetsDog.Controllers
             }
 
             return RedirectToAction(nameof(Index));
+        }
+
+        private void PopularSeletores()
+        {
+            var animais = _context.Animals
+                .Include(a => a.Cliente)
+                .Select(a => new
+                {
+                    a.id_animal,
+                    Nome = a.Cliente == null ? a.Nome : $"{a.Nome} ({a.Cliente.Nome})"
+                })
+                .ToList();
+
+            ViewBag.Animais = new SelectList(animais, "id_animal", "Nome");
+            ViewBag.Servicos = new SelectList(_context.Servicos.AsNoTracking().ToList(), "Idservico", "nome");
+            ViewBag.Profissionais = new SelectList(_context.Profissionais.AsNoTracking().ToList(), "id_profissional", "nome");
         }
     }
 }

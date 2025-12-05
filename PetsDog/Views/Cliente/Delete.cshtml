@@ -1,0 +1,33 @@
+@model PetsDog.Models.Cliente
+
+@{
+    ViewData["Title"] = "Excluir Cliente";
+}
+
+<div class="page-header">
+    <div>
+        <h1 class="page-title text-danger">Excluir Cliente</h1>
+        <p class="subtitle">Esta ação removerá o cliente e seus vínculos.</p>
+    </div>
+</div>
+
+<div class="card-panel">
+    <div class="alert alert-warning">Tem certeza que deseja remover este cliente?</div>
+
+    <dl class="row mb-4">
+        <dt class="col-sm-3">Nome</dt>
+        <dd class="col-sm-9">@Model.Nome</dd>
+
+        <dt class="col-sm-3">Email</dt>
+        <dd class="col-sm-9">@Model.Email</dd>
+
+        <dt class="col-sm-3">Telefone</dt>
+        <dd class="col-sm-9">@Model.Telefone</dd>
+    </dl>
+
+    <form asp-action="Delete" method="post" class="d-flex gap-2">
+        <input type="hidden" asp-for="Idcliente" />
+        <button type="submit" class="btn btn-danger">Confirmar</button>
+        <a asp-action="Index" class="btn btn-outline-secondary">Cancelar</a>
+    </form>
+</div>
