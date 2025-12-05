@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using PetsDog.Data;
+using PetsDog.Database;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +27,11 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
+
+await DatabaseBootstrapper.EnsureDatabaseAsync(
+    builder.Configuration,
+    app.Logger,
+    builder.Environment.ContentRootPath);
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
