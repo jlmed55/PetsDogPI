@@ -15,21 +15,21 @@
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
         <div class="col-md-6">
-            <label asp-for="nome" class="form-label">Nome do serviço</label>
-            <input asp-for="nome" class="form-control" placeholder="Banho, tosa, consulta" />
-            <span asp-validation-for="nome" class="text-danger"></span>
+            <label asp-for="Nome" class="form-label">Nome do serviço</label>
+            <input asp-for="Nome" class="form-control" placeholder="Banho, tosa, consulta" />
+            <span asp-validation-for="Nome" class="text-danger"></span>
         </div>
 
         <div class="col-md-3">
-            <label asp-for="duracao_min" class="form-label">Duração (min)</label>
-            <input asp-for="duracao_min" class="form-control" type="number" min="10" step="5" />
-            <span asp-validation-for="duracao_min" class="text-danger"></span>
+            <label asp-for="DuracaoMin" class="form-label">Duração (min)</label>
+            <input asp-for="DuracaoMin" class="form-control" type="number" min="10" step="5" />
+            <span asp-validation-for="DuracaoMin" class="text-danger"></span>
         </div>
 
         <div class="col-md-3">
-            <label asp-for="preco" class="form-label">Preço</label>
-            <input asp-for="preco" class="form-control" type="number" min="0" step="0.01" />
-            <span asp-validation-for="preco" class="text-danger"></span>
+            <label asp-for="Preco" class="form-label">Preço</label>
+            <input asp-for="Preco" class="form-control" type="number" min="0" step="0.01" />
+            <span asp-validation-for="Preco" class="text-danger"></span>
         </div>
 
         <div class="col-12 d-flex gap-2">

@@ -30,19 +30,19 @@
                 </tr>
             </thead>
             <tbody>
-            @foreach (var profissional in Model)
-            {
-                <tr>
-                    <td class="fw-semibold">@profissional.nome</td>
-                    <td>@profissional.especialidade</td>
-                    <td>@profissional.DisponibilidadeInicio - @profissional.DiponibilidadeFim</td>
-                    <td class="text-end">
-                        <div class="action-bar justify-content-end">
-                            <a class="btn btn-sm btn-secondary" asp-action="Edit" asp-route-id="@profissional.id_profissional">Editar</a>
-                            <a class="btn btn-sm btn-outline-danger" asp-action="Delete" asp-route-id="@profissional.id_profissional">Excluir</a>
-                        </div>
-                    </td>
-                </tr>
+                @foreach (var profissional in Model)
+                {
+                    <tr>
+                        <td class="fw-semibold">@profissional.Nome</td>
+                        <td>@profissional.Especialidade</td>
+                        <td>@profissional.DisponibilidadeInicio - @profissional.DiponibilidadeFim</td>
+                        <td class="text-end">
+                            <div class="action-bar justify-content-end">
+                                <a class="btn btn-sm btn-secondary" asp-action="Edit" asp-route-id="@profissional.IdProfissional">Editar</a>
+                                <a class="btn btn-sm btn-outline-danger" asp-action="Delete" asp-route-id="@profissional.IdProfissional">Excluir</a>
+                            </div>
+                        </td>
+                    </tr>
             }
             </tbody>
         </table>

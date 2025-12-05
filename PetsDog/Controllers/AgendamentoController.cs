@@ -128,8 +128,8 @@ namespace PetsDog.Controllers
             {
                 Agendamento = agendamento,
                 Animais = new SelectList(animais, "id_animal", "Nome", agendamento.AnimalId),
-                Servicos = new SelectList(_context.Servicos.AsNoTracking().ToList(), "Idservico", "nome", agendamento.ServicoId),
-                Profissionais = new SelectList(_context.Profissionais.AsNoTracking().ToList(), "id_profissional", "nome", agendamento.ProfissionalId)
+                Servicos = new SelectList(_context.Servicos.AsNoTracking().ToList(), "Idservico", "Nome", agendamento.ServicoId),
+                Profissionais = new SelectList(_context.Profissionais.AsNoTracking().ToList(), "IdProfissional", "Nome", agendamento.ProfissionalId)
             };
         }
     }

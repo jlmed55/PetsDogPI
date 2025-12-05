@@ -1,16 +1,23 @@
-﻿namespace PetsDog.Models
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace PetsDog.Models
 {
-    public class Profissional
+    public class Profissional(int idProfissional = 0, string? nome = null, string? especialidade = null, string? disponibilidadeInicio = null, string? diponibilidadeFim = null)
     {
-        public int id_profissional { get; set; }
+        [Column("id_profissional")]
+        public int IdProfissional { get; set; } = idProfissional;
 
-        public string? nome { get; set; }
+        [Column("nome")]
+        public string? Nome { get; set; } = nome;
 
-        public string? especialidade {  get; set; }
+        [Column("especialidade")]
+        public string? Especialidade { get; set; } = especialidade;
 
-        public string? DisponibilidadeInicio { get; set; }
+        public string? DisponibilidadeInicio { get; set; } = disponibilidadeInicio;
 
-        public string? DiponibilidadeFim {  get; set; }
+        [Column("DiponibilidadeFim")]
+        public string? DiponibilidadeFim { get; set; } = diponibilidadeFim;
+
         public ICollection<Agendamento>? Agendamentos { get; set; }
     }
 }
