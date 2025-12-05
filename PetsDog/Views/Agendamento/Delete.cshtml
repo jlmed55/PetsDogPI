@@ -16,13 +16,13 @@
 
     <dl class="row mb-4">
         <dt class="col-sm-3">Animal</dt>
-        <dd class="col-sm-9">@Model.AnimalId</dd>
+        <dd class="col-sm-9">@(Model.Animal?.Nome ?? Model.AnimalId.ToString())</dd>
 
         <dt class="col-sm-3">Serviço</dt>
-        <dd class="col-sm-9">@Model.ServicoId</dd>
+        <dd class="col-sm-9">@(Model.Servico?.nome ?? Model.ServicoId.ToString())</dd>
 
         <dt class="col-sm-3">Profissional</dt>
-        <dd class="col-sm-9">@Model.ProfissionalId</dd>
+        <dd class="col-sm-9">@(Model.Profissional?.nome ?? Model.ProfissionalId.ToString())</dd>
 
         <dt class="col-sm-3">Data e Hora</dt>
         <dd class="col-sm-9">@Model.DataHora.ToString("dd/MM/yyyy HH:mm")</dd>

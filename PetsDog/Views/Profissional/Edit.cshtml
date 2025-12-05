@@ -1,0 +1,52 @@
+@model PetsDog.Models.Profissional
+
+@{
+    ViewData["Title"] = "Editar Profissional";
+}
+
+<div class="page-header">
+    <div>
+        <h1 class="page-title">Editar Profissional</h1>
+        <p class="subtitle">Ajuste a disponibilidade e dados do colaborador.</p>
+    </div>
+</div>
+
+<div class="card-panel">
+    <form asp-action="Edit" method="post" class="row g-3">
+        <input type="hidden" asp-for="id_profissional" />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="col-md-6">
+            <label asp-for="nome" class="form-label"></label>
+            <input asp-for="nome" class="form-control" />
+            <span asp-validation-for="nome" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-6">
+            <label asp-for="especialidade" class="form-label"></label>
+            <input asp-for="especialidade" class="form-control" />
+            <span asp-validation-for="especialidade" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-6">
+            <label asp-for="DisponibilidadeInicio" class="form-label"></label>
+            <input asp-for="DisponibilidadeInicio" class="form-control" type="time" />
+            <span asp-validation-for="DisponibilidadeInicio" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-6">
+            <label asp-for="DiponibilidadeFim" class="form-label"></label>
+            <input asp-for="DiponibilidadeFim" class="form-control" type="time" />
+            <span asp-validation-for="DiponibilidadeFim" class="text-danger"></span>
+        </div>
+
+        <div class="col-12 d-flex gap-2">
+            <button type="submit" class="btn btn-primary">Salvar</button>
+            <a asp-action="Index" class="btn btn-outline-secondary">Voltar</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

@@ -16,20 +16,26 @@
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
         <div class="col-md-4">
-            <label asp-for="AnimalId" class="form-label"></label>
-            <input asp-for="AnimalId" class="form-control" />
+            <label asp-for="AnimalId" class="form-label">Animal</label>
+            <select asp-for="AnimalId" asp-items="ViewBag.Animais" class="form-select">
+                <option value="">Selecione um animal</option>
+            </select>
             <span asp-validation-for="AnimalId" class="text-danger"></span>
         </div>
 
         <div class="col-md-4">
-            <label asp-for="ServicoId" class="form-label"></label>
-            <input asp-for="ServicoId" class="form-control" />
+            <label asp-for="ServicoId" class="form-label">Serviço</label>
+            <select asp-for="ServicoId" asp-items="ViewBag.Servicos" class="form-select">
+                <option value="">Selecione um serviço</option>
+            </select>
             <span asp-validation-for="ServicoId" class="text-danger"></span>
         </div>
 
         <div class="col-md-4">
-            <label asp-for="ProfissionalId" class="form-label"></label>
-            <input asp-for="ProfissionalId" class="form-control" />
+            <label asp-for="ProfissionalId" class="form-label">Profissional</label>
+            <select asp-for="ProfissionalId" asp-items="ViewBag.Profissionais" class="form-select">
+                <option value="">Selecione um profissional</option>
+            </select>
             <span asp-validation-for="ProfissionalId" class="text-danger"></span>
         </div>
 
