@@ -1,0 +1,36 @@
+@model PetsDog.Models.Animal
+
+@{
+    ViewData["Title"] = "Excluir Animal";
+}
+
+<div class="page-header">
+    <div>
+        <h1 class="page-title text-danger">Excluir Animal</h1>
+        <p class="subtitle">Confirme para remover definitivamente o cadastro do pet.</p>
+    </div>
+</div>
+
+<div class="card-panel">
+    <div class="alert alert-warning">Tem certeza que deseja remover este animal?</div>
+
+    <dl class="row mb-4">
+        <dt class="col-sm-3">Nome</dt>
+        <dd class="col-sm-9">@Model.Nome</dd>
+
+        <dt class="col-sm-3">Espécie</dt>
+        <dd class="col-sm-9">@Model.Especie</dd>
+
+        <dt class="col-sm-3">Porte</dt>
+        <dd class="col-sm-9">@Model.Porte</dd>
+
+        <dt class="col-sm-3">Cliente</dt>
+        <dd class="col-sm-9">@(Model.Cliente?.Nome ?? Model.Id_cliente.ToString())</dd>
+    </dl>
+
+    <form asp-action="Delete" method="post" class="d-flex gap-2">
+        <input type="hidden" asp-for="id_animal" />
+        <button type="submit" class="btn btn-danger">Confirmar</button>
+        <a asp-action="Index" class="btn btn-outline-secondary">Cancelar</a>
+    </form>
+</div>

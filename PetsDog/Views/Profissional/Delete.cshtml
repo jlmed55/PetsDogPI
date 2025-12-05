@@ -1,0 +1,33 @@
+@model PetsDog.Models.Profissional
+
+@{
+    ViewData["Title"] = "Excluir Profissional";
+}
+
+<div class="page-header">
+    <div>
+        <h1 class="page-title text-danger">Excluir Profissional</h1>
+        <p class="subtitle">Confirme para remover o colaborador da escala.</p>
+    </div>
+</div>
+
+<div class="card-panel">
+    <div class="alert alert-warning">Tem certeza que deseja remover este profissional?</div>
+
+    <dl class="row mb-4">
+        <dt class="col-sm-3">Nome</dt>
+        <dd class="col-sm-9">@Model.nome</dd>
+
+        <dt class="col-sm-3">Especialidade</dt>
+        <dd class="col-sm-9">@Model.especialidade</dd>
+
+        <dt class="col-sm-3">Disponibilidade</dt>
+        <dd class="col-sm-9">@Model.DisponibilidadeInicio - @Model.DiponibilidadeFim</dd>
+    </dl>
+
+    <form asp-action="Delete" method="post" class="d-flex gap-2">
+        <input type="hidden" asp-for="id_profissional" />
+        <button type="submit" class="btn btn-danger">Confirmar</button>
+        <a asp-action="Index" class="btn btn-outline-secondary">Cancelar</a>
+    </form>
+</div>

@@ -1,0 +1,54 @@
+@model IEnumerable<PetsDog.Models.Animal>
+@{
+    ViewData["Title"] = "Animais";
+}
+
+<div class="page-header">
+    <div>
+        <h1 class="page-title">Animais</h1>
+        <p class="subtitle">Cadastre os pets dos clientes para liberar novos agendamentos.</p>
+    </div>
+    <div class="action-bar">
+        <a class="btn btn-primary" asp-action="Create">Cadastrar animal</a>
+    </div>
+</div>
+
+<div class="card-panel">
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info mb-0">Nenhum animal cadastrado até o momento.</div>
+    }
+    else
+    {
+        <table class="table table-striped align-middle">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Espécie</th>
+                    <th>Porte</th>
+                    <th>Idade</th>
+                    <th>Cliente</th>
+                    <th class="text-end">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var animal in Model)
+            {
+                <tr>
+                    <td class="fw-semibold">@animal.Nome</td>
+                    <td>@animal.Especie</td>
+                    <td>@animal.Porte</td>
+                    <td>@animal.Idade</td>
+                    <td>@(animal.Cliente?.Nome ?? "-")</td>
+                    <td class="text-end">
+                        <div class="action-bar justify-content-end">
+                            <a class="btn btn-sm btn-secondary" asp-action="Edit" asp-route-id="@animal.id_animal">Editar</a>
+                            <a class="btn btn-sm btn-outline-danger" asp-action="Delete" asp-route-id="@animal.id_animal">Excluir</a>
+                        </div>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    }
+</div>

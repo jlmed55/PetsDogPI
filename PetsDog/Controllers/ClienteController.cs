@@ -17,15 +17,19 @@ namespace PetsDog.Controllers
                 return View(_context.Clientes.ToList());
             }
             [HttpPost]
-            public IActionResult Create(Cliente cliente)
+        public IActionResult Create(Cliente cliente)
+        {
+            if (ModelState.IsValid)
             {
-                if (ModelState.IsValid)
+                if (cliente.Datacadastro == default)
                 {
-                    _context.Clientes.Add(cliente);
-                    _context.SaveChanges();
-                    return RedirectToAction("Index");
+                    cliente.Datacadastro = DateTime.Now;
                 }
-                return View(cliente);
+                _context.Clientes.Add(cliente);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(cliente);
             }
             [HttpGet]
             public IActionResult Create()
@@ -51,12 +55,12 @@ namespace PetsDog.Controllers
                 return View(cliente);
             }
             [HttpGet]
-            public IActionResult Delete(int id)
-            {
-                var cliente = _context.Servicos.Find(id);
-                if (cliente == null) return NotFound();
-                return View(cliente);
-            }
+        public IActionResult Delete(int id)
+        {
+            var cliente = _context.Clientes.Find(id);
+            if (cliente == null) return NotFound();
+            return View(cliente);
+        }
             [HttpPost]
             public IActionResult DeleteConfirmed(int id)
             {

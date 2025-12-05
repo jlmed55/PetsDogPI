@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using PetsDog.Data;
 using PetsDog.Models;
 
@@ -13,7 +15,10 @@ namespace PetsDog.Controllers
         }
         public IActionResult Index()
         {
-            return View(_context.Animals.ToList());
+            var animais = _context.Animals
+                .Include(a => a.Cliente)
+                .ToList();
+            return View(animais);
         }
         [HttpPost]
         public IActionResult Create(Animal animal)
@@ -24,11 +29,13 @@ namespace PetsDog.Controllers
                 _context.SaveChanges();
                 return RedirectToAction("Index");
             }
+            PopularClientes();
             return View(animal);
         }
         [HttpGet]
         public IActionResult Create()
         {
+            PopularClientes();
             return View();
         }
         [HttpGet]
@@ -36,6 +43,7 @@ namespace PetsDog.Controllers
         {
             var animal = _context.Animals.Find(id);
             if (animal == null) return NotFound();
+            PopularClientes();
             return View(animal);
         }
         [HttpPost]
@@ -47,12 +55,15 @@ namespace PetsDog.Controllers
                 _context.SaveChanges();
                 return RedirectToAction("Index");
             }
+            PopularClientes();
             return View(animal);
         }
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            var animal = _context.Animals.Find(id);
+            var animal = _context.Animals
+                .Include(a => a.Cliente)
+                .FirstOrDefault(a => a.id_animal == id);
             if (animal == null) return NotFound();
             return View(animal);
         }
@@ -66,6 +77,11 @@ namespace PetsDog.Controllers
                 _context.SaveChanges();
             }
             return RedirectToAction("Index");
+        }
+
+        private void PopularClientes()
+        {
+            ViewBag.Clientes = new SelectList(_context.Clientes.ToList(), "Idcliente", "Nome");
         }
     }
 }
